@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Author sunjiankang
  * @Date 2019/6/24 15:17
  */
-@Configuration
+//@Configuration
 public class CorsFilterConfig {
 
     @Bean
@@ -29,6 +29,7 @@ public class CorsFilterConfig {
         corsConfiguration.addAllowedHeader("*");// 允许任何头
         corsConfiguration.addAllowedMethod("*");// 允许任何方法（post、get等）
         corsConfiguration.addAllowedOrigin("*");// 允许任何域名使用
+        corsConfiguration.setMaxAge(3600L);// 预检请求的有效期，单位为秒。
         return corsConfiguration;
     }
 
