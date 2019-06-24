@@ -1,5 +1,6 @@
 package com.nokekang.democors.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -12,8 +13,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Author sunjiankang
  * @Date 2019/6/24 15:17
  */
-//@Configuration
+@Configuration
 public class CorsFilterConfig {
+
+    @Autowired
+    private CorsConfigProperties corsConfigProperties;
 
     @Bean
     public CorsFilter corsConfig(){
@@ -25,11 +29,11 @@ public class CorsFilterConfig {
 
     private CorsConfiguration buildCorsConfiguration(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowCredentials(true);// 是否支持安全证书
-        corsConfiguration.addAllowedHeader("*");// 允许任何头
-        corsConfiguration.addAllowedMethod("*");// 允许任何方法（post、get等）
-        corsConfiguration.addAllowedOrigin("*");// 允许任何域名使用
-        corsConfiguration.setMaxAge(3600L);// 预检请求的有效期，单位为秒。
+        corsConfiguration.setAllowCredentials(corsConfigProperties.getAllowCredentials());// 是否支持安全证书
+        corsConfiguration.addAllowedHeader(corsConfigProperties.getAllowedHeaders());// 允许任何头
+        corsConfiguration.addAllowedMethod(corsConfigProperties.getAllowedMethods());// 允许任何方法（post、get等）
+        corsConfiguration.addAllowedOrigin(corsConfigProperties.getAllowedOrigins());// 允许任何域名使用
+        corsConfiguration.setMaxAge(corsConfigProperties.getMaxAge());// 预检请求的有效期，单位为秒。
         return corsConfiguration;
     }
 

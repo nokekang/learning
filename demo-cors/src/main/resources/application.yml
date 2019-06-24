@@ -1,0 +1,17 @@
+server:
+  port: 8081
+  servlet:
+    path: /cors-demo
+    #session超时时间30分钟
+    session:
+      timeout: 1800
+
+# 跨域配置
+endpoints:
+  cors:
+    allowCredentials: true
+    allowed-headers: "*"
+    allowed-methods: "*"
+    allowed-origins: "*"
+    max-age: 3600
+

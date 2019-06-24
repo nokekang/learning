@@ -21,6 +21,11 @@ public class CrossController {
 
     @RequestMapping("/get-all-users")
     public User getUsers(HttpServletResponse response){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         logger.info("接口访问成功");
         return new User("zhangsan", 18);
     }
